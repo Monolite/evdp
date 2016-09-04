@@ -1,0 +1,61 @@
+<Celular>
+    <MainMenu>
+        <Opcion name='Reproductor de Audio' function='ListaSimple' icon='img/player.png'>
+            <Lista>
+                <Elemento name='Reproducir Todas' function='Reproducir Todas' args='all'/>
+                <Elemento name='Listar Artistas' function='Lista de Artistas'/>
+                <Elemento name='Listar Albums' function='Lista de Albums'/>
+            </Lista>
+        </Opcion>
+        
+        <Opcion name='Camara' function='Captura' icon='img/camera.png'/>
+        
+        <Opcion name='Album Fotografico' function='ListaImagenes' icon='img/album.png'/>
+        
+        <Opcion name='Llamadas' function='ListaSimple' icon='img/call_log.png'>
+            <Lista>
+                <Elemento name='Contestadas' function='Llamadas Contestadas'/>
+                <Elemento name='Marcadas' function='Llamadas Marcadas'/>
+                <Elemento name='Perdidas' function='Llamadas Perdidas'/>
+            </Lista>
+        </Opcion>
+        
+        <Opcion name='Mensajes' function='ListaSimple' icon='img/messages.png'>
+            <Lista>
+                <Elemento name='Nuevo Mensaje'/>
+                <Elemento name='Bandeja de Entrada'/>
+                <Elemento name='Borrador'/>
+                <Elemento name='Bandeja de Salida'/>
+            </Lista>
+        </Opcion>
+        
+        <Opcion name='Contactos' function='ListaSimple' icon='img/contacts.png'>
+            <Lista>
+                <Elemento name='Nuevo Contacto' function='agregar_contacto'/>
+                <Elemento name='Lista de Contacto' function='Lista de Contactos'/>
+            </Lista>
+        </Opcion>
+        
+        <Opcion name='Juegos' function='ListaSimple' icon='img/games.png'>
+            <Lista>
+                <Elemento name='Nombre Juego1'/>
+                <Elemento name='Nombre Juego2'/>
+            </Lista>
+        </Opcion>
+        
+        <Opcion name='Utileria' function='ListaSimple' icon='img/util.png'>
+            <Lista>
+                <Elemento name='Alarmas'/>
+                <Elemento name='Calendario'/>
+                <Elemento name='Tareas'/>
+                <Elemento name='Notas'/>
+                <Elemento name='Calculadora'/>
+                <Elemento name='Sincronizacion'/>
+                <Elemento name='Temporizador'/>
+                <Elemento name='Cronometro'/>
+            </Lista>
+        </Opcion>
+        
+        <Opcion name='Configuracion' icon='img/settings.png'/>
+    </MainMenu>
+</Celular>
