@@ -1,0 +1,13 @@
+from pandac.PandaModules import *
+from direct.task import Task
+import direct.directbase.DirectStart
+from direct.showbase import DirectObject
+import sys
+
+cara = loader.loadModel('angie.egg')
+cara.reparentTo(render)
+
+base.oobe()
+#base.disableMouse()
+base.camera.hide()
+run()

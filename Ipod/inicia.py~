@@ -1,0 +1,8 @@
+from ipod import ipod
+
+
+
+
+reproductor=Ipod()
+base.disableMouse()
+run()
