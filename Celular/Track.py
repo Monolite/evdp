@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 ''' Abstraccion de los archivos de audio'''
 
-import tagpy
+import taglib
 
 class Track:
     ''' Clase que representa un archivo de Musica.'''
@@ -41,9 +41,37 @@ class Track:
             param archivo La ruta y nombre del archivo de audio.'''
     
         self.archivo = archivo
-        arch = tagpy.FileRef(self.archivo)
-        my_tag = arch.tag()
-        self.artista = my_tag.artist
-        self.titulo = my_tag.title
-        self.album = my_tag.album
+
+        arch = taglib.File(archivo)
+
+        if 'ARTIST' in arch.tags:
+            if len(arch.tags['ARTIST']) > 0:
+                self.artista = arch.tags['ARTIST'][0]
+            else:
+                self.artista = 'UNKNOWN'
+        else:
+            self.artista = 'UNKNOWN'
+
+        if 'TITLE' in arch.tags:      
+            if len(arch.tags['TITLE']) > 0:
+                self.titulo = arch.tags['TITLE'][0]
+            else:
+                self.titulo = 'UNKNOWN'
+        else:
+            self.titulo = 'UNKNOWN'
+
+        if 'ALBUM' in arch.tags:
+            if len(arch.tags['ALBUM']) > 0:
+                self.album = arch.tags['ALBUM'][0]
+            else:
+                self.album = 'UNKNOWN'
+        else:
+            self.album = 'UNKNOWN'
+        
+        
+        #arch = tagpy.FileRef(self.archivo)
+        #my_tag = arch.tag()
+        #self.artista = my_tag.artist
+        #self.titulo = my_tag.title
+        #self.album = my_tag.album
 
