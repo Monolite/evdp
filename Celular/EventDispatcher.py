@@ -1,6 +1,6 @@
 from pandac.PandaModules import *
 from direct.task import Task
-import direct.directbase.DirectStart
+from direct.showbase.ShowBase import ShowBase
 from direct.gui.OnscreenText import OnscreenText
 from direct.showbase import DirectObject
 import sys
@@ -71,7 +71,7 @@ class EventDispatcher(DirectObject.DirectObject):
     def add_action(self, name, event):
         base = self.parent.get_base()
 
-        obj = base.find("**/" + name)
+        obj = self.parent.model.find("**/" + name)
         obj.setCollideMask(BitMask32.bit(0))
 
         self.actions[name] = event
@@ -79,7 +79,7 @@ class EventDispatcher(DirectObject.DirectObject):
     def clear(self):
         base = self.parent.get_base()
         for name in self.actions.keys():
-            obj = base.find("**/" + name)
+            obj = self.parent.model.find("**/" + name)
             obj.setCollideMask(BitMask32(0))
 
         self.actions = {}

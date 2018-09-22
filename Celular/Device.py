@@ -1,6 +1,5 @@
-from pandac.PandaModules import *
-import direct.directbase.DirectStart
-from direct.showbase import DirectObject
+from pandac.PandaModules import Mat4
+from direct.showbase.ShowBase import ShowBase
 
 import OptionManager
 
@@ -11,28 +10,29 @@ from GestorRegistros import GestorRegistros
 from MusicApp import MusicApp
 from EventDispatcher import EventDispatcher
 from MainMenu import MainMenu
-#from PhotoApp import PhotoApp
-#from CameraApp import CameraApp
+from PhotoApp import PhotoApp
+from CameraApp import CameraApp
 from ListApp import ListApp
 from DialApp import DialApp
 from InitApp import InitApp
 
-class Device:
+class Device():
     def __init__(self):
-        self.model = loader.loadModel('device.egg')
-        self.model.reparentTo(render)
+        self.base = ShowBase()
+        self.model = self.base.loader.loadModel('device.egg')
+        self.model.reparentTo(self.base.render)
         
-        self.base = self.model.find("**/base")
         
-        self.base.setHpr(0, 90, 0)
-        
-        base.disableMouse()
-        base.camera.setPos(0, -10, 0)
-        mat = Mat4(camera.getMat())
+        self.base.disableMouse()
+        self.base.camera.setPos(0, -10, 0)
+        #self.base.camera.setHpr(0, 90, 0)
+
+        mat = Mat4(self.base.camera.getMat())
         mat.invertInPlace()
-        base.mouseInterfaceNode.setMat(mat)
-        base.enableMouse()
-        self.screen = self.base.find("**/pantalla")
+        self.base.mouseInterfaceNode.setMat(mat)
+        self.base.enableMouse()
+
+        self.screen = self.model.find("**/pantalla")
         
         self.list_app = ListApp(self)
         self.music_app = MusicApp(self)
@@ -48,7 +48,7 @@ class Device:
         
         self.apps["Reproductor de Audio"] = self.display_list
         #self.apps["Camara"] = CameraApp(self)
-        #self.apps["Album Fotografico"] = PhotoApp(self)
+        self.apps["Album Fotografico"] = PhotoApp(self)
         self.apps["Llamadas"] = self.display_list
         self.apps["Contactos"] = self.display_list
         self.apps["Mensajes"] = self.display_list
@@ -136,7 +136,7 @@ class Device:
         return None
         
     def run(self):
-        run()
+        self.base.run()
 
     def get_model(self):
         return self.model

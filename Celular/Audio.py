@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import direct.directbase.DirectStart
+from direct.showbase.ShowBase import ShowBase
 from direct.showbase import DirectObject
 import sys
 from GestorMusica import GestorMusica
