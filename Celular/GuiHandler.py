@@ -164,7 +164,7 @@ class GuiHandler():
         self.width = 128 * self.scale
         self.height = 160 * self.scale
         self.padding = 2
-        self.top_margin = 75;
+        self.top_margin = 75
         
         self.surface = cairo.ImageSurface (cairo.FORMAT_ARGB32,
                                            self.width, self.height)

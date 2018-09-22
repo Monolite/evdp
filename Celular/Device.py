@@ -25,7 +25,8 @@ class Device():
         
         self.base.disableMouse()
         self.base.camera.setPos(0, -10, 0)
-        #self.base.camera.setHpr(0, 90, 0)
+        self.model.setHpr(0,90,0)
+        #self.base.camera.setHpr(0, 10, 0)
 
         mat = Mat4(self.base.camera.getMat())
         mat.invertInPlace()
