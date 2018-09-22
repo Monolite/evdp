@@ -1,5 +1,6 @@
-from pandac.PandaModules import *
-import direct.directbase.DirectStart
+from panda3d.vision import WebcamVideo
+from panda3d.core import MovieTexture, Texture, CardMaker, Point2
+from direct.showbase.ShowBase import ShowBase
 from direct.showbase import DirectObject
 import array
 import cairo
@@ -32,8 +33,12 @@ class CameraApp(GuiHandler):
         self.title = "Guardar?"
         self.parent = device
         self.video_mode = False
-    	self.texture = OpenCVTexture()
-    	self.texture.fromCamera()
+        
+        option = WebcamVideo.get_option(0)
+        self.texture = MovieTexture(option)
+        self.texture.setKeepRamImage(True)
+    	#self.texture = OpenCVTexture()
+    	#self.texture.fromCamera()
     	scale = self.texture.getTexScale()
     	print scale
     	#self.texture = OpenCVTexture()
@@ -49,7 +54,7 @@ class CameraApp(GuiHandler):
     	
         self.card.setSx(0.49)
         self.card.setSz(0.394)
-        self.card.setHpr(0, 270, 180)
+        self.card.setHpr(0, 270, 0)
         self.card.setPos(0.004, 0.335, 0.1)
         self.card.hide()
 

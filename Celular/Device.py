@@ -26,7 +26,6 @@ class Device():
         self.base.disableMouse()
         self.base.camera.setPos(0, -10, 0)
         self.model.setHpr(0,90,0)
-        #self.base.camera.setHpr(0, 10, 0)
 
         mat = Mat4(self.base.camera.getMat())
         mat.invertInPlace()
@@ -48,7 +47,7 @@ class Device():
         self.apps["Reproductor"] = self.play
         
         self.apps["Reproductor de Audio"] = self.display_list
-        #self.apps["Camara"] = CameraApp(self)
+        self.apps["Camara"] = CameraApp(self)
         self.apps["Album Fotografico"] = PhotoApp(self)
         self.apps["Llamadas"] = self.display_list
         self.apps["Contactos"] = self.display_list
