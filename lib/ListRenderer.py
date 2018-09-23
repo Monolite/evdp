@@ -80,10 +80,10 @@ class ListRenderer(GuiHandler):
         
         self.surface.write_to_png(self.get_output())
     
-    def __init__(self):
+    def __init__(self, config):
         ''' Constructor'''
         
-        GuiHandler.__init__(self)
+        GuiHandler.__init__(self, config.dynamic_texture_path)
         
         self.option_height = 18 * self.scale
         self.option_width = self.width

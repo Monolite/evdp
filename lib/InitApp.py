@@ -20,21 +20,19 @@ def get_transformation_matrix(width_a, height_a, width_b, height_b):
 
 class InitApp(GuiHandler):
 
-    def __init__(self, device, texture_path, background_path):
+    def __init__(self, device, config):
         self.parent = device
-        GuiHandler.__init__(self)
+        GuiHandler.__init__(self, config.dynamic_texture_path)
         self.func3 = ""
         self.func2 = "Menu"
         self.func1 = "" 
         self.title = "Mi Celular"
         self.number = ""
-        self.texture_path = texture_path
-        print background_path
-        self.background = background_path
+        self.config = config
     
     def paint_background(self):
         # Fondo
-        image_path = self.background
+        image_path = self.config.background_path
         surface  = cairo.ImageSurface (cairo.FORMAT_ARGB32, self.width, self.height)
         context = cairo.Context(surface)
         
@@ -50,7 +48,7 @@ class InitApp(GuiHandler):
     
     def refresh_gui(self):
         GuiHandler.refresh_gui(self)
-        self.surface.write_to_png(self.texture_path)
+        self.surface.write_to_png(self.config.dynamic_texture_path)
     
     def refresh(self):
         self.refresh_gui()

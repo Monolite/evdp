@@ -63,7 +63,7 @@ class MainMenuRenderer (GuiHandler):
     def __init__(self, app, texture_path):
         ''' Constructor de MenuHandler'''
 
-        GuiHandler.__init__(self)
+        GuiHandler.__init__(self, texture_path)
 
         self.image_size = 108
         self.func1 = ""

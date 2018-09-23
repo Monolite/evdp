@@ -2,11 +2,11 @@ from MainMenuRenderer import MainMenuRenderer
 import OptionManager
 
 class MainMenu():
-    def __init__(self, device, texture_path):
+    def __init__(self, device, config):
         self.parent = device
         self.menu_items = {}
         self.selected_index = 0
-        self.renderer = MainMenuRenderer(self, texture_path)
+        self.renderer = MainMenuRenderer(self, config.dynamic_texture_path)
         
 
     def activate(self, events):

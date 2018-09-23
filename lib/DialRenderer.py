@@ -5,8 +5,8 @@ from GuiHandler import GuiHandler
 
 class DialRenderer(GuiHandler):
 
-    def __init__(self):
-        GuiHandler.__init__(self)
+    def __init__(self, config):
+        GuiHandler.__init__(self, config.dynamic_texture_path)
         self.call_dialog = ""
         self.dialed_number = ""
         self.func3 = "Llamar"

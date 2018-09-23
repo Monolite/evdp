@@ -69,7 +69,7 @@ class ListApp:
             self.renderer.refresh_gui()
             self.parent.repaint()
         
-    def __init__(self, device):
+    def __init__(self, device, config):
         ''' Constructor'''
         
         self.parent = device
@@ -78,4 +78,4 @@ class ListApp:
         self.selector_pos = 0
         self.selected_index = 0
         self.list_size = 6
-        self.renderer = ListRenderer()
+        self.renderer = ListRenderer(config)

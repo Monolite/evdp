@@ -7,11 +7,11 @@ from Registro import Registro
 
 class DialApp:
     
-    def __init__(self, device):
+    def __init__(self, device, config):
         self.parent = device
         self.dialog = "Marcando..."
         self.number = ""
-        self.renderer = DialRenderer()
+        self.renderer = DialRenderer(config)
         
     def refresh(self):
         self.renderer.set_dialog(self.dialog)

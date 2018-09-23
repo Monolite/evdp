@@ -15,60 +15,61 @@ from CameraApp import CameraApp
 from ListApp import ListApp
 from DialApp import DialApp
 from InitApp import InitApp
-import json
+from ConfigLoader import ConfigLoader
 
 class Device():
     def __init__(self):
 
-        with open('./res/models/sony_ericsson_w200.json') as f:
-            self.devconf = json.load(f)
+        self.devconf = ConfigLoader('./res/models/sony_ericsson_w200.json')
+
+        #with open('./res/models/sony_ericsson_w200.json') as f:
+        #    self.devconf = json.load(f)
         
         self.base = ShowBase()
-        self.model = self.base.loader.loadModel(self.devconf['model_path'])
+        self.loader = self.base.loader
+        self.model = self.loader.loadModel(self.devconf.model_path)
         self.model.reparentTo(self.base.render)
         
         
         self.base.disableMouse()
         self.base.camera.setPos(
-            self.devconf['initial_position']['x'],
-            self.devconf['initial_position']['y'],
-            self.devconf['initial_position']['z'])
+            self.devconf.initial_position['x'],
+            self.devconf.initial_position['y'],
+            self.devconf.initial_position['z'])
 
-        self.model.setHpr(self.devconf['model_transformation']['x'],
-            self.devconf['model_transformation']['y'],
-            self.devconf['model_transformation']['z'])
+        self.model.setHpr(
+            self.devconf.model_transformation['x'],
+            self.devconf.model_transformation['y'],
+            self.devconf.model_transformation['z'])
 
         mat = Mat4(self.base.camera.getMat())
         mat.invertInPlace()
         self.base.mouseInterfaceNode.setMat(mat)
         self.base.enableMouse()
 
-        self.screen = self.model.find(self.devconf['model_texture_path'])
+        self.screen = self.model.find(self.devconf.model_texture_path)
         
-        self.list_app = ListApp(self)
+        self.list_app = ListApp(self, self.devconf)
         #self.music_app = MusicApp(self)
-        #self.dial_app = DialApp(self)
+        self.dial_app = DialApp(self, self.devconf)
         
         self.apps = {}
-        self.events = EventDispatcher(self, self.devconf['device_name'])
-
-        background_path = self.devconf['images_path'] + '/' + self.devconf['background']
+        self.events = EventDispatcher(self, self.devconf.device_name)
         
-        self.apps["init"] = InitApp(self, 
-            self.devconf['dynamic_texture_path'],
-            background_path)
-        #self.apps["Dial"] = self.display_dial_screen
-        self.apps["menu"] = MainMenu(self, self.devconf['dynamic_texture_path'])
+        self.apps["init"] = InitApp(self, self.devconf)
+        
+        self.apps["Dial"] = self.display_dial_screen
+        self.apps["menu"] = MainMenu(self, self.devconf)
         #self.apps["Reproductor"] = self.play
         
         #self.apps["Reproductor de Audio"] = self.display_list
         #self.apps["Camara"] = CameraApp(self)
         #self.apps["Album Fotografico"] = PhotoApp(self)
-        #self.apps["Llamadas"] = self.display_list
-        #self.apps["Contactos"] = self.display_list
-        #self.apps["Mensajes"] = self.display_list
-        #self.apps["Juegos"] = self.display_list
-        #self.apps["Utileria"] = self.display_list
+        self.apps["Llamadas"] = self.display_list
+        self.apps["Contactos"] = self.display_list
+        self.apps["Mensajes"] = self.display_list
+        self.apps["Juegos"] = self.display_list
+        self.apps["Utileria"] = self.display_list
         
         #self.apps["Reproducir Todas"] = self.play
         #self.apps["Lista de Albums"] = self.list_albums
@@ -168,7 +169,7 @@ class Device():
     def launch(self, app_name):
         if app_name in self.apps:
             self.events.clear()
-            self.screen.setTexture(loader.loadTexture(self.devconf['dynamic_texture_path']),1)
+            self.screen.setTexture(self.loader.loadTexture(self.devconf.dynamic_texture_path),1)
             
             if "instancemethod" in str(type(self.apps[app_name])):
                 app = self.apps[app_name](app_name)

@@ -9,7 +9,7 @@ class GuiHandler():
     ''' Genera el fondo de la GUI'''
     
     def get_output(self):
-        return OptionManager.get_texture_filename()
+        return self.texture
     
     def set_function_1_name(self, func1):
         self.func1 = func1
@@ -153,7 +153,7 @@ class GuiHandler():
         return aux
         
     
-    def __init__(self):
+    def __init__(self, texture_path):
         ''' Constructor'''
         
         self.title = "Prueba"
@@ -165,6 +165,7 @@ class GuiHandler():
         self.height = 160 * self.scale
         self.padding = 2
         self.top_margin = 75
+        self.texture = texture_path
         
         self.surface = cairo.ImageSurface (cairo.FORMAT_ARGB32,
                                            self.width, self.height)
