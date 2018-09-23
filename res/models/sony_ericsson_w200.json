@@ -1,0 +1,19 @@
+{
+    "device_name": "Sony Ericsson W200",
+    "model_path" : "../res/models/sony_ericsson_w200.egg",
+    "model_texture_path":"**/pantalla",
+    "dynamic_texture_path":"./res/models/sony_ericsson_w200/textures/Screen.png",
+    "background" : "background.png",
+    "images_path":"./res/media/images",
+    "music_path":"./res/media/music",
+    "initial_position" : {
+        "x":0,
+        "y":-10,
+        "z": 0
+    },
+    "model_transformation": {
+        "x":0,
+        "y":90,
+        "z": 0
+    }
+}
